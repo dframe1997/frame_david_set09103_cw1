@@ -1,0 +1,7 @@
+<link rel=stylesheet" type="text/css" href="./static/list.css">
+<h1>{{ option }}</h1>
+<ul>
+  {% for item in optionlist %}
+    <li><a href="{{ option }}/{{item.name}}">{{ item.name }}</li>
+  {% endfor %}
+</ul>
