@@ -20,7 +20,7 @@ def noPath():
 
 @app.route('/home')
 def home():
-	return 'Home'
+	return render_template('home.html', gamelist=gamelist)
 
 @app.route('/genre')
 def genres():
