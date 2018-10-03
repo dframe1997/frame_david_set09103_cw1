@@ -23,15 +23,15 @@ h1{
     margin: 8px;
 }
 
-ul{
-    list-style: none;
+.gamesContainer{
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
 }
 
-img{
-    width: 100%;
-    max-height: 100vh;
+.gamesContainer a{
+    flex-grow: 1;
+    width: 300px;
 }
 
 .imgwrapper{
@@ -41,9 +41,33 @@ img{
     justify-self: center;
 }
 
+.imgWrapper img{
+    width: 100%;
+}
+
 a img{
-    width: 100%;    
-    margin: 10px;
+    width: 100%;
+}
+
+.categories a{
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #333333;
+    color: lightgrey;
+    text-decoration: none;
+    flex-grow: 1;
+}
+
+.active, .categories a:hover{
+    background-color: lightgrey !important;
+    color: #333333 !important;
+}
+
+.active{
+    cursor: default;
 }
 
 li a{
@@ -51,8 +75,8 @@ li a{
 }
 
 li{
-    flex-grow: 1;
-    max-width: 200px;
+    //flex-grow: 1;
+    //max-width: 200px;
 }
 
 .details{
@@ -64,4 +88,21 @@ li{
 .info{
     margin: 10px;
     flex-grow: 1;
+}
+
+.categories{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.back{
+    border-radius: 50px;
+    background-color: white;
+    padding: 8px;
+    height: 16px;
+    width: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: red !important;
 }

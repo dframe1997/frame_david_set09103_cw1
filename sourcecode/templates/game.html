@@ -1,9 +1,10 @@
 <link rel="stylesheet" type="text/css" href="/static/main.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
-<div class = "header">
+<div class = "header">    
+    <a class="back" href="javascript:history.back()"><i class="fas fa-angle-left"></i>Back</a>
+    <a href="/"><i class="fas fa-home"></i></a>
     <h1>{{ game.name }}</h1>
-    <a href="/home"><i class="fas fa-home"></i></a>
 </div>
 <div class="details">
     <div class="imgwrapper"><img src="{{ game.boxart }}"/></div>

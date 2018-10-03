@@ -26,42 +26,29 @@ gamelist=[mario, sonic, civ, forza, horizon]
 
 @app.route('/')
 def noPath():
-	return redirect(url_for('home'))
-
-@app.route('/home')
-def home():
-	return render_template('home.html', gamelist=gamelist)
+	return redirect(url_for('games'))
 
 @app.route('/<filterItem>')
-def genres(filterItem='genre'):
-	return render_template('list.html', option=filterItem, optionlist=getFilterList2(filterItem))
+def filterOptions(filterItem='genre'):
+	return render_template('list.html', option=filterItem, title=filterItem, optionlist=getFilterList(filterItem))
 
 @app.route('/<filterItem>/<name>')
-def genre(filterItem='genre', name=None):
+def filterResults(filterItem='genre', name=None):
 	genre = {'name': name}
-	optionlist = list(filter(lambda x: getattr(x,filterItem) == name, gamelist)) #https://stackoverflow.com/questions/598398/searching-a-list-of-objects-in-python
-	return render_template('list.html', option='games', optionlist=optionlist)
+	optionlist = list(filter(lambda x: getattr(x,filterItem) == name, gamelist)) 
+	return render_template('list.html', option=filterItem, games='true', title=name, optionlist=optionlist)
 
 @app.route('/games/<name>')
 def game(name=None):
 	game = list(filter(lambda x: x.name == name, gamelist))
 	return render_template('game.html', game=game[0])
 
+
 @app.route('/games')
 def games():
-	return render_template('list.html',option='games', optionlist=gamelist)
+	return render_template('list.html',option='games', games='true', title='All', optionlist=gamelist)
 
 def getFilterList(filterOption):
-	if filterOption == 'genre': 
-		return [{'name':"Strategy"}, {'name':"RPG"}, {'name':"Platformer"}, {'name':"Racing"}]
-	elif filterOption == 'year':
-		return [{'name':"2016"},{'name':"2017"}, {'name': "2018"}]
-	elif filterOption == 'platform':
-		return [{'name':"Switch"}, {'name':"PlayStation 4"}, {'name':"PC"}, {'name':"Xbox One"}]
-	elif filterOption == 'developer':
-		return [{'name':"Nintendo NPD"}, {'name':"Guerrilla Games"}]
-
-def getFilterList2(filterOption):
 	optionList = []
 	for game in gamelist:
 		value = getattr(game, filterOption)
