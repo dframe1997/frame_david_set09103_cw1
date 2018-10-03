@@ -2,17 +2,27 @@ from flask import Flask, url_for, redirect, render_template
 app = Flask(__name__)
 
 class Game:
-    def __init__(self, name, genre, boxart):
+    def __init__(self, name, genre, year, platform, developer, publisher, series, boxart):
         self.name=name
         self.genre=genre
+        self.year=year
+        self.platform=platform
+        self.developer=developer
+        self.publisher=publisher
+        self.series=series
 	self.boxart=boxart
 
-mario = Game('mario', 'platformer', 'http://www.nag.co.za/wp-content/uploads/2014/12/doomcover.jpg')
-sonic = Game('sonic', 'platformer', 'http://www.nag.co.za/wp-content/uploads/2014/12/doomcover.jpg')
-civ = Game('civ', 'strategy','http://www.nag.co.za/wp-content/uploads/2014/12/doomcover.jpg')
-forza = Game('forza', 'racing','http://www.nag.co.za/wp-content/uploads/2014/12/doomcover.jpg')
+mario = Game('Super Mario Odyssey', 'Platformer', '2017', 'Switch', 'Nintendo EPD', 'Nintendo', 'Super Mario', 'https://vignette.wikia.nocookie.net/nintendo/images/3/3b/Super_Mario_Odyssey_Box_art_%28EU%29.jpg/revision/latest?cb=20170909175809&path-prefix=en')
 
-gamelist=[mario, sonic, civ, forza]
+sonic = Game('Sonic the Hedgehog', 'Platformer', '1991', 'Genesis', 'Sonic Team', 'Sega', 'Sonic the Hedgehog', 'http://www.boxequalsart.com/sonic-1-md-na-big.jpg')
+
+civ = Game('Civilization VI', 'Strategy', '2016', 'PC', 'Firaxis Games', '2K Games', 'Civilization', 'https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/Civilization_VI_cover_art.jpg/220px-Civilization_VI_cover_art.jpg')
+
+forza = Game('Forza Horizon 4', 'Racing', '2018', 'Xbox One', 'Playground Games', 'Microsoft Studios', 'Forza', 'https://www.gamereactor.eu/media/92/forzahorizon4_2489263b.png')
+
+horizon = Game('Horizon Zero Dawn', 'RPG', '2017', 'PlayStation 4', 'Guerrilla Games', 'Sony Interactive Entertainment', 'Horizon', 'http://images.pushsquare.com/news/2016/06/ps4_exclusive_horizon_zero_dawns_box_art_is_predictably_beautiful/large.jpg')
+
+gamelist=[mario, sonic, civ, forza, horizon]
 
 @app.route('/')
 def noPath():
@@ -22,14 +32,14 @@ def noPath():
 def home():
 	return render_template('home.html', gamelist=gamelist)
 
-@app.route('/genre')
-def genres():
-	return render_template('list.html', option='genre', optionlist=[{'name':"strategy"}, {'name':"rpg"}, {'name':"platformer"}, {'name':"racing"}])
+@app.route('/<filterItem>')
+def genres(filterItem='genre'):
+	return render_template('list.html', option=filterItem, optionlist=getFilterList2(filterItem))
 
-@app.route('/genre/<name>')
-def genre(name=None):
+@app.route('/<filterItem>/<name>')
+def genre(filterItem='genre', name=None):
 	genre = {'name': name}
-	optionlist = list(filter(lambda x: x.genre == name, gamelist)) #https://stackoverflow.com/questions/598398/searching-a-list-of-objects-in-python
+	optionlist = list(filter(lambda x: getattr(x,filterItem) == name, gamelist)) #https://stackoverflow.com/questions/598398/searching-a-list-of-objects-in-python
 	return render_template('list.html', option='games', optionlist=optionlist)
 
 @app.route('/games/<name>')
@@ -40,3 +50,21 @@ def game(name=None):
 @app.route('/games')
 def games():
 	return render_template('list.html',option='games', optionlist=gamelist)
+
+def getFilterList(filterOption):
+	if filterOption == 'genre': 
+		return [{'name':"Strategy"}, {'name':"RPG"}, {'name':"Platformer"}, {'name':"Racing"}]
+	elif filterOption == 'year':
+		return [{'name':"2016"},{'name':"2017"}, {'name': "2018"}]
+	elif filterOption == 'platform':
+		return [{'name':"Switch"}, {'name':"PlayStation 4"}, {'name':"PC"}, {'name':"Xbox One"}]
+	elif filterOption == 'developer':
+		return [{'name':"Nintendo NPD"}, {'name':"Guerrilla Games"}]
+
+def getFilterList2(filterOption):
+	optionList = []
+	for game in gamelist:
+		value = getattr(game, filterOption)
+		if value not in optionList:
+			optionList.append(value)
+	return optionList

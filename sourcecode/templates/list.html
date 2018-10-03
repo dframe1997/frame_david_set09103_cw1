@@ -1,7 +1,20 @@
-<link rel=stylesheet" type="text/css" href="static/main.css">
-<h1>{{ option }}</h1>
+<link rel="stylesheet" type="text/css" href="/static/main.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+<div class ="header">
+    <h1>{{ option }}</h1>
+    <a href="/home"><i class="fas fa-home"></i></a>
+</div>
 <ul>
   {% for item in optionlist %}
-    <li><a href="{{ option }}/{{item.name}}">{{ item.name }}</li>
+  <li>  
+  {%if option == 'games' %}    
+    <a href="/{{ option }}/{{ item.name }}"</a>
+    <img src="{{item.boxart}}" width="150px">
+  {% else %}
+    <a href="/{{ option }}/{{ item }}"</a>
+    {{ item }}
+  {% endif %}
+  </li>
   {% endfor %}
 </ul>

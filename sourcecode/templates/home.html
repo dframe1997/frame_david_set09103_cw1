@@ -1,6 +1,9 @@
 <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="static/main.css">
-<h1>Home</h1>
+
+<div class = "header">
+    <h1>Home</h1>
+</div>
 <ul>
     {% for item in gamelist %}
         <li>{{ item.name }}</li>
@@ -8,3 +11,8 @@
 </ul>
 <a href='games'>All</a>
 <a href='genre'>Genre</a>
+<a href='year'>Year</a>
+<a href='platform'>Platform</a>
+<a href='developer'>Developer</a>
+<a href='publisher'>Publisher</a>
+<a href='series'>Series</a>
