@@ -1,5 +1,6 @@
 <link rel="stylesheet" type="text/css" href="/static/main.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
 <div class ="header">
     {% if title != 'All' %}
@@ -8,25 +9,31 @@
     {% endif %}
     <h1>{{ title.capitalize() }}</h1>
 </div>
-<div class="categories">
-    <a class="{{'active' if option == 'games'}}" href="/games">All</a>
-    <a class="{{'active' if option == 'genre'}}" href="/genre">Genre</a>
-    <a class="{{'active' if option == 'year'}}" href="/year">Year</a>
-    <a class="{{'active' if option == 'platform'}}" href="/platform">Platform</a>
-    <a class="{{'active' if option == 'developer'}}" href="/developer">Developer</a>
-    <a class="{{'active' if option == 'publisher'}}" href="/publisher">Publisher</a>
-    <a class="{{'active' if option == 'series'}}" href="/series">Series</a>
-</div>
-<div class= "gamesContainer">
-  {% for item in optionlist %}
-    {%if games == 'true' %}    
-      <a href="/games/{{ item.name }}">
-          <img src="{{item.boxart}}">
-      </a>
-    {% else %}
-      <a href="/{{ option }}/{{ item }}">
-          {{ item }}
-      </a>
-    {% endif %}
-  {% endfor %}
+<div class="content">
+  <div class="categories">
+      <a class="{{'active' if option == 'games'}}" href="/games">All</a>
+      <a class="{{'active' if option == 'genre'}}" href="/genre">Genre</a>
+      <a class="{{'active' if option == 'year'}}" href="/year">Year</a>
+      <a class="{{'active' if option == 'platform'}}" href="/platform">Platform</a>
+      <a class="{{'active' if option == 'developer'}}" href="/developer">Developer</a>
+      <a class="{{'active' if option == 'publisher'}}" href="/publisher">Publisher</a>
+      <a class="{{'active' if option == 'series'}}" href="/series">Series</a>
+  </div>
+  {% if optionlist|length > 0 %}
+    <div class= "gamesContainer">
+      {% for item in optionlist %}
+        {%if games == 'true' %}    
+          <a href="/games/{{ item.name }}">
+              <img src="{{item.boxart}}">
+          </a>
+        {% else %}
+          <a class="optionButton" href="/{{ option }}/{{ item }}">
+              {{ item }}
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>A {{ option }} called "{{ title }}" does not exist</p>
+  {% endif %}
 </div>

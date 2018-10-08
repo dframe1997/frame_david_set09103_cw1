@@ -1,6 +1,6 @@
 body{
     margin: 0;
-    font-family: Nunito;
+    font-family: Nunito, sans-serif;
 }
 .header{
     width: 100%;
@@ -10,11 +10,19 @@ body{
     margin: 0;
     display: flex;
     align-items: center;
+    position: fixed;
+    margin-top: -50px;
+    z-index: 1;
+}
+
+.content{
+    margin-top: 50px;
 }
 
 h1{
     text-align: center;
     width: 100%;
+    white-space: nowrap;
 }
 
 .header a{
@@ -30,8 +38,10 @@ h1{
 }
 
 .gamesContainer a{
-    flex-grow: 1;
     width: 300px;
+    margin: 20px;
+    text-align: center;
+    transition: 0.1 ease-in-out all;
 }
 
 .imgwrapper{
@@ -47,6 +57,12 @@ h1{
 
 a img{
     width: 100%;
+    max-width: 50vw;
+    transition: 0.1s ease-in-out all;
+}
+
+a img:hover{
+    transform: scale(1.08);
 }
 
 .categories a{
@@ -75,8 +91,8 @@ li a{
 }
 
 li{
-    //flex-grow: 1;
-    //max-width: 200px;
+    /*flex-grow: 1;
+    max-width: 200px;*/
 }
 
 .details{
@@ -105,4 +121,24 @@ li{
     justify-content: space-between;
     align-items: center;
     color: red !important;
+}
+
+.optionButton{
+    background-color: #333333;
+    color: lightgrey;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50px;
+    margin: 20px;
+    border-radius: 50px;
+    flex-grow: 1;
+    transition: 0.1s ease-in-out all;
+}
+
+.optionButton:hover{
+    background-color: lightgrey;
+    color: #333333;
+    transform: scale(1.08);
 }
