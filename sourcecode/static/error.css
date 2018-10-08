@@ -41,7 +41,12 @@ img{
 }
 
 h1{
-  margin: 3vh;
+  margin-bottom: 0;
+}
+
+p{
+  margin-top: 0;
+  margin-bottom: 3vh;
 }
 
 .content{

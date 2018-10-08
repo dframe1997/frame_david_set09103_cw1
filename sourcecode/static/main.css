@@ -23,6 +23,8 @@ h1{
     text-align: center;
     width: 100%;
     white-space: nowrap;
+    position: fixed;
+    margin: 0;
 }
 
 .header a{
@@ -121,6 +123,11 @@ li{
     justify-content: space-between;
     align-items: center;
     color: red !important;
+    z-index: 2;
+}
+
+.header a{
+    z-index: 2;
 }
 
 .optionButton{
