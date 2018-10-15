@@ -12,12 +12,12 @@
       <div class="imgwrapper"><img src="{{ game.boxart }}"/></div>
       <div class="info">
           <p>Name: {{ game.name }}</p>
-          <p>Genre: {{ game.genre }}</p>
-          <p>Year: {{ game.year }}</p>
-          <p>Platform: {{ game.platform }}</p>
-          <p>Developer: {{ game.developer }}</p>
-          <p>Publisher: {{ game.publisher }}</p>
-          <p>Series: {{ game.series }}</p>
+          <p>Genre: </p><a href="/genre/{{game.genre}}">{{ game.genre }}</a>
+          <p>Year: </p><a href="/year/{{game.year}}">{{ game.year }}</a>
+          <p>Platform: </p><a href="/platform/{{game.platform}}">{{ game.platform }}</a>
+          <p>Developer: </p><a href="/developer/{{game.developer}}">{{ game.developer }}</a>
+          <p>Publisher: </p><a href="/publisher/{{game.publisher}}">{{ game.publisher }}</a>
+          <p>Series: </p><a href="/series/{{game.series}}">{{ game.series }}</a>
       </div>
   </div>
 </div>
