@@ -16,7 +16,7 @@ class Game:
 
 
 gamelist = []
-jsonfile = jsonfile = os.path.join(app.static_folder, 'dataset.json')
+jsonfile = os.path.join(app.static_folder, 'dataset.json')
 jsondata = json.load(open(jsonfile))
 
 def loadGames():
