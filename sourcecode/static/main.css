@@ -13,6 +13,7 @@ body{
     position: fixed;
     margin-top: -50px;
     z-index: 1;
+    justify-content: space-between;
 }
 
 .content{
@@ -27,10 +28,15 @@ h1{
     margin: 0;
 }
 
-.header a{
-    color: white;
+.navbuttons{
     text-decoration: none;
     margin: 8px;
+    z-index: 2;
+}
+
+.header a{
+    color: white;
+    margin: 5px;
 }
 
 .gamesContainer{
@@ -148,4 +154,42 @@ li{
     background-color: lightgrey;
     color: #333333;
     transform: scale(1.08);
+}
+
+form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formItem{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+}
+
+.formItem input{
+    border-radius: 50px;
+    border: 0;
+    background-color: lightgrey;
+    color: #333333;
+    padding: 10px;
+    margin: 20px;
+    width: 70%;
+}
+
+input[type="submit"]{
+    border-radius: 50px;
+    padding: 10px;
+    background-color: #333333;
+    color: lightgrey;
+    border: 0;
+    width: 90%;
+}
+
+input[type="submit"]:hover{
+    background-color: lightgrey;
+    color: #333333;
 }

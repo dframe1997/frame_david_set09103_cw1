@@ -1,4 +1,4 @@
-from flask import Flask, url_for, redirect, render_template, abort, json
+from flask import Flask, url_for, redirect, render_template, abort, json, request
 import os
 app = Flask(__name__)
 
@@ -16,8 +16,9 @@ class Game:
 
 
 gamelist = []
-jsonfile = os.path.join(app.static_folder, 'dataset.json')
-jsondata = json.load(open(jsonfile))
+jsonurl = os.path.join(app.static_folder, 'dataset.json')
+jsonfile = open(jsonurl)
+jsondata = json.load(jsonfile)
 
 def loadGames():
     jsonfile = os.path.join(app.static_folder, 'dataset.json')
@@ -77,6 +78,32 @@ def games():
 @app.route('/jsontest')
 def jsontest():
 	return str(jsondata);
+
+@app.route('/addgame', methods=['POST','GET'])
+def addgame():
+	if request.method == 'POST':
+	  print request.form
+	  name = request.form['name']
+	  genre = request.form['genre']
+          year = request.form['year']
+          platform = request.form['platform']
+	  developer = request.form['developer']
+	  publisher = request.form['publisher']
+	  series = request.form['series']
+	  boxart = request.form['boxart']
+	  newGame = Game(name, genre, year, platform, developer, publisher, series, boxart)
+	  
+	  jsondata.append({"name": name, "genre": genre, "year": year, "platform": platform, "developer": developer, "publisher":publisher, "series":series, "boxart":boxart})
+
+	  jsonfile = open(jsonurl, 'w')
+	  jsonfile.write(json.dumps(jsondata))
+	  jsonfile.close()
+
+	  gamelist = loadGames()
+	  return "Game added"
+	else:
+	  return render_template("addgame.html")
+
 
 def getFilterList(filterOption):
 	gamelist = loadGames()
