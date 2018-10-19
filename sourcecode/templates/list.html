@@ -4,12 +4,10 @@
 
 <div class ="header">
     {% if title != 'All' %}
-        <a class="back" href="javascript:history.back()"><i class="fas fa-angle-left"></i> Back</a>
-        <div class="navbuttons">
-            <a href="/"><i class="fas fa-home"></i></a>    
-            <a href="/addgame"><i class="fas fa-plus"></i></a>
-        </div>
+        <a title="Back" class="whitebutton" href="javascript:history.back()"><i class="fas fa-angle-left"></i></a>
+        <a title="Home" class="whitebutton" href="/"><i class="fas fa-home"></i></a>    
     {% endif %}
+    <a title="Add a game" class="whitebutton" href="/addgame"><i class="fas fa-plus"></i></a>
     <h1>{{ title.capitalize() }}</h1>
 </div>
 <div class="content">
@@ -37,6 +35,9 @@
       {% endfor %}
     </div>
   {% else %}
-    <p>A {{ option }} called "{{ title }}" does not exist</p>
+    <p style="text-align: center">A {{ option }} called "{{ title }}" does not exist</p>
+    <a class="optionButton" href="/{{option}}">
+        Back to {{ option }} selection
+    </a>
   {% endif %}
 </div>

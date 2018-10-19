@@ -2,6 +2,8 @@ body{
   margin: 0;
   font-family: Nunito, sans-serif;
   text-align: center;
+  background-color: #212121;
+  color: lightgrey;
 }
 
 .header{

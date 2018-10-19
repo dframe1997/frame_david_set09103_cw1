@@ -100,9 +100,10 @@ def addgame():
 	  jsonfile.close()
 
 	  gamelist = loadGames()
-	  return "Game added"
+	  
+	  return redirect(url_for('games'));
 	else:
-	  return render_template("addgame.html")
+	  return render_template("addgame.html", added = 'false')
 
 
 def getFilterList(filterOption):
