@@ -6,6 +6,9 @@
     {% if title != 'All' %}
         <a title="Back" class="whitebutton" href="javascript:history.back()"><i class="fas fa-angle-left"></i></a>
         <a title="Home" class="whitebutton" href="/"><i class="fas fa-home"></i></a>    
+    {% else %}
+	<a title="Back" class="whitebutton disabled"><i class="fas fa-angle-left"></i></a>
+	<a title="Home" class="whitebutton disabled"><i class="fas fa-home"></i></a>
     {% endif %}
     <a title="Add a game" class="whitebutton" href="/addgame"><i class="fas fa-plus"></i></a>
     <h1>{{ title.capitalize() }}</h1>

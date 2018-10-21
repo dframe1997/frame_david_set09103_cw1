@@ -47,7 +47,7 @@ h1{
 }
 
 .gamesContainer a{
-    width: 300px;
+    width: 200px;
     margin: 20px;
     text-align: center;
     transition: 0.1 ease-in-out all;
@@ -56,7 +56,7 @@ h1{
 .imgwrapper{
     flex-grow: 1;
     min-width: 250px;
-    max-width: 400px;
+    max-width: 25vw;
     justify-self: center;
     margin: 20px;
 }
@@ -219,4 +219,12 @@ input[type="submit"]:hover{
 .textfade{
     animation-name: fadeout;
     animation-duration: 2s;
+}
+
+.disabled{
+    opacity: 0.5;
+}
+
+.disabled:hover{
+    transform: scale(1)
 }
